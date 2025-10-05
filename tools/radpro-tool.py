@@ -7,7 +7,7 @@
 #
 
 import argparse
-from datetime import datetime
+from datetime import datetime, timezone
 import math
 import os
 import requests
@@ -392,7 +392,7 @@ def stream_datalog(io, args):
             prev_timestamp = curr_timestamp
             prev_pulsecount = curr_pulsecount
 
-            curr_datetime = datetime.fromtimestamp(curr_timestamp)
+            curr_datetime = datetime.fromtimestamp(curr_timestamp, tz=timezone.utc)
 
             if args.pulsedata_file != None and curr_pulsecount != None:
                 curr_datetime_str = str(curr_datetime)
